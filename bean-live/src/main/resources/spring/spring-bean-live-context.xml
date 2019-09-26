@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+    <bean id="beanPostProcessor" class="org.airyny.spring.learn.bean.live.pojo.BeanPostProcessorImpl"/>
+
+    <bean id="disposableBean" class="org.airyny.spring.learn.bean.live.pojo.DisposableBeanImpl"/>
+
+    <bean id="source" class="org.airyny.spring.learn.bean.live.pojo.Source">
+        <property name="fruit" value="橙汁"/>
+        <property name="sugar" value="少糖"/>
+        <property name="size" value="大杯"/>
+    </bean>
+
+    <bean id="juiceMaker2" class="org.airyny.spring.learn.bean.live.pojo.JuiceMaker2"
+          init-method="init" destroy-method="destory">
+        <property name="beverageShop" value="一丢丢"/>
+        <property name="source" ref="source"/>
+    </bean>
+
+
+</beans>
