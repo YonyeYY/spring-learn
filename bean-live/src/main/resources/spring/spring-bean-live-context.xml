@@ -5,8 +5,6 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-
-
     <bean id="beanPostProcessor" class="org.airyny.spring.learn.bean.live.pojo.BeanPostProcessorImpl"/>
 
     <bean id="disposableBean" class="org.airyny.spring.learn.bean.live.pojo.DisposableBeanImpl"/>
@@ -23,5 +21,17 @@
         <property name="source" ref="source"/>
     </bean>
 
+    <bean id="constructorBean" class="org.airyny.spring.learn.bean.live.pojo.ConstructorBean">
+        <constructor-arg index="0" value="sss"/>
+    </bean>
 
+    <bean id="setterBean" class="org.airyny.spring.learn.bean.live.pojo.SetterBean">
+        <property name="setterBeanName" value="set注入"/>
+        <property name="setterNote" value="这是set注入"/>
+    </bean>
+
+    <bean id="interfaceBean" class="org.airyny.spring.learn.bean.live.pojo.InterfaceBean">
+        <property name="name" value="这是一个接口注入类"/>
+        <property name="source" ref="source"/>
+    </bean>
 </beans>

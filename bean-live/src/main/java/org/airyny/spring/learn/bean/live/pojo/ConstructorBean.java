@@ -9,6 +9,8 @@ package org.airyny.spring.learn.bean.live.pojo;
 public class ConstructorBean {
     private String name;
 
+    public ConstructorBean(){}
+
     public ConstructorBean(String name){
         this.name = name;
     }
