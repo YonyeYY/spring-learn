@@ -55,7 +55,8 @@ public class JdkProxyExample implements InvocationHandler {
             System.out.println("进入代理逻辑方法");
             System.out.println("在调度真实对象之前的服务");
 
-
+            System.err.println("这是sayHello 方法");
+            method.invoke(target,args);
             System.out.println("在调度真实对象之后的服务");
         }else{
             //相当于调用原方法
