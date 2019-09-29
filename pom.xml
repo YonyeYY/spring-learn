@@ -11,6 +11,7 @@
     <modules>
         <module>bean-live</module>
         <module>aop</module>
+        <module>dynamic-proxy</module>
     </modules>
 
     <properties>

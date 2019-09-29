@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="aop" />
         <module name="bean-live" />
+        <module name="dynamic-proxy" />
       </profile>
     </annotationProcessing>
   </component>

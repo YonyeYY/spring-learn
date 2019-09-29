@@ -13,7 +13,7 @@ import org.airyny.spring.learn.aop.interceptor.Interceptor;
  * @Version:1.0
  * @deseription:
  **/
-public class ProxyBeanUtil implements InvocationHandler {
+public class ProxyBeanFactory implements InvocationHandler {
 
     //被代理对象
     private Object obj;
@@ -32,7 +32,7 @@ public class ProxyBeanUtil implements InvocationHandler {
      */
     public static Object getBean(Object obj, Interceptor interceptor){
         //使用当前类，作为代理方法，此时被代理对象执行方法的时候，会进入当前类的invoke方法里
-        ProxyBeanUtil _this = new ProxyBeanUtil();
+        ProxyBeanFactory _this = new ProxyBeanFactory();
 
         //保存被代理对象
         _this.obj = obj;
@@ -64,6 +64,26 @@ public class ProxyBeanUtil implements InvocationHandler {
         //before 方法
         interceptor.before(obj);
 
-        return null;
+        try{
+            //反射原有方法
+            retObj = method.invoke(obj,args);
+        }catch (Exception ex){
+            exceptionFlag = true;
+        }finally{
+            //after 方法
+            interceptor.after(obj);
+        }
+        if (exceptionFlag){
+            //afterThrowing 方法
+            interceptor.afterThrowing(obj);
+        }
+        if (exceptionFlag){
+            //afterThrowing 方法
+            interceptor.afterThrowing(obj);
+        }else{
+            //afterReturning 方法
+            interceptor.afterReturning(obj);
+        }
+        return retObj;
     }
 }
