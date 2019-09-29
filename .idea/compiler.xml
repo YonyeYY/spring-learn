@@ -9,6 +9,7 @@
         <module name="aop" />
         <module name="bean-live" />
         <module name="dynamic-proxy" />
+        <module name="mybatis" />
       </profile>
     </annotationProcessing>
   </component>
