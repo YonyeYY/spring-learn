@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:redis="http://www.springframework.org/schema/redis"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd
+       http://www.springframework.org/schema/redis
+       http://www.springframework.org/schema/redis/spring-redis.xsd">
+
+    <cache:annotation-driven cache-manager="redisCacheManager"/>
+
+    <!--线程池-->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+    <property name="maxIdle" value="50"/>
+    <property name="maxTotal" value="100"/>
+    <property name="maxWaitMillis" value="20000"/>
+
+    </bean>
+
+    <!--序列化-->
+    <bean id="stringRedisSerializer"
+          class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+
+    <bean id="jdkSerializationRedisSerializer"
+          class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+
+    <bean id="connectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="localhost"/>
+	    <property name="port" value="6379"/>
+        <property name="poolConfig" ref="poolConfig"/>
+        <property name="timeout" value="20000"/>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="keySerializer" ref="stringRedisSerializer"/>
+        <property name="valueSerializer" ref="jdkSerializationRedisSerializer"/>
+
+    </bean>
+
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg index="0" ref="redisTemplate"/>
+        <property name="defaultExpiration" value="600"/>
+
+        <!--缓存管理名称-->
+        <property name="cacheNames">
+            <list>
+                <value>redisCacheManager</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 将监听实现类注册到spring容器中 -->
+    <bean id="dataSyncEventListener" class="org.airyny.spring.learn.mybatis.pub.server.MessageCustomer"/>
+    <!-- 注册监听器并引入监听实现类 -->
+    <bean id="messageListener" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <property name="delegate" ref="dataSyncEventListener"/>
+        <property name="serializer" ref="stringRedisSerializer"/>
+        <!--<property name="serializer" ref="jdkSerializer" />-->
+    </bean>
+
+    <bean id="sendMessage" class="org.airyny.spring.learn.mybatis.pub.server.SendMessage"/>
+    <!-- 消息监听：其中可以通过method方法自定义—监听实现类中用来处理消息的方法 -->
+    <redis:listener-container connection-factory="connectionFactory">
+        <!--指定消息处理方法，序列化方式及主题名称-->
+        <redis:listener ref="messageListener" method="onMessage" serializer="stringRedisSerializer" topic="channel1.0"/>
+        <!--<redis:listener ref="messageListener" method="onMessage" serializer="jdkSerializer" topic="java"/>-->
+    </redis:listener-container>
+
+
+
+</beans>

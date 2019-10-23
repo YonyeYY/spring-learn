@@ -1,12 +1,12 @@
 package org.airyny.spring.learn.mybatis.pub.biz;
 
-import java.util.List;
-
 import org.airyny.spring.learn.mybatis.pub.dao.dev.SysUserinfoMapper;
 import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfo;
 import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)
@@ -21,6 +21,7 @@ public class SysUserinfoBiz {
     SysUserinfoMapper sysUserinfoMapper;
 
     public List<SysUserinfo> getList(){
+
         return sysUserinfoMapper.selectByExample(new SysUserinfoExample());
     }
 }

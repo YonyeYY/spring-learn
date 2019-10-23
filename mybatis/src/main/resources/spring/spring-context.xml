@@ -7,11 +7,12 @@
    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="db.properties" file-encoding="utf-8" />
 
     <context:annotation-config/>
     <context:component-scan base-package="org.airyny.spring.learn.mybatis.pub.biz"/>
+    <context:component-scan base-package="org.airyny.spring.learn.mybatis.pub.server"/>
 
-    <import resource="classpath:spring/spring-mybatis-context.xml"/>
+    <import resource="spring-mybatis-context.xml"/>
+    <import resource="spring-jedis.xml"/>
 
 </beans>
