@@ -3,9 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/arithmetic" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bean-live" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dynamic-proxy" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mybatis/src/main/resources/spring/SqlMapConfig.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mybatis/src/main/resources/mybatis/SqlMapConfig.xml" charset="GBK" />
   </component>
 </project>

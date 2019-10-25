@@ -7,12 +7,15 @@
    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="db.properties"/>
 
     <context:annotation-config/>
     <context:component-scan base-package="org.airyny.spring.learn.mybatis.pub.biz"/>
     <context:component-scan base-package="org.airyny.spring.learn.mybatis.pub.server"/>
+    <context:component-scan base-package="org.airyny.spring.learn.mybatis.pub.kafka"/>
 
     <import resource="spring-mybatis-context.xml"/>
     <import resource="spring-jedis.xml"/>
-
+    <import resource="spring-kafka-server.xml"/>
+    <import resource="spring-kafka-customer.xml"/>
 </beans>

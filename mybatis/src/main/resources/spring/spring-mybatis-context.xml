@@ -8,7 +8,6 @@
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-
     <!-- 数据源，使用dbcp -->
     <!-- 数据库连接池 -->
     <bean id="dataSource"

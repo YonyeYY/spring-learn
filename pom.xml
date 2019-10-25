@@ -13,6 +13,7 @@
         <module>aop</module>
         <module>dynamic-proxy</module>
         <module>mybatis</module>
+        <module>arithmetic</module>
     </modules>
 
     <properties>
@@ -116,7 +117,11 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.5.4</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
 
 
 
