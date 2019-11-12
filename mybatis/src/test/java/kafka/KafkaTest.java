@@ -1,5 +1,6 @@
 package kafka;
 
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,11 +12,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  **/
 public class KafkaTest {
 
+    ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-context.xml");
 
-    public static void main(String[] args){
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-context.xml");
+    @Test
+    public void start(){
 
         ((ClassPathXmlApplicationContext) context).start();
 
     }
+
+
 }

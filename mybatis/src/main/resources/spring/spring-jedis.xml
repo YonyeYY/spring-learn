@@ -27,6 +27,10 @@
     <bean id="jdkSerializationRedisSerializer"
           class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
 
+    <bean id="jdkSerializer"
+          class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+
+
     <bean id="connectionFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="localhost"/>
@@ -69,7 +73,7 @@
     <redis:listener-container connection-factory="connectionFactory">
         <!--指定消息处理方法，序列化方式及主题名称-->
         <redis:listener ref="messageListener" method="onMessage" serializer="stringRedisSerializer" topic="channel1.0"/>
-        <!--<redis:listener ref="messageListener" method="onMessage" serializer="jdkSerializer" topic="java"/>-->
+        <redis:listener ref="messageListener" method="onMessage" serializer="jdkSerializer" topic="java"/>
     </redis:listener-container>
 
 

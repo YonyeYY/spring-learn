@@ -10,7 +10,9 @@
         <module name="arithmetic" />
         <module name="bean-live" />
         <module name="dynamic-proxy" />
+        <module name="lambda" />
         <module name="mybatis" />
+        <module name="web-app" />
       </profile>
     </annotationProcessing>
   </component>

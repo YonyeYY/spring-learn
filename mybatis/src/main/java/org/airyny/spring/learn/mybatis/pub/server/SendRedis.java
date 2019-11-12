@@ -16,7 +16,7 @@ public class SendRedis {
 
     public void outPut(){
         for (int i = 0; i < 10; i++) {
-            sendMessage.sendMessage("channel1.0", "第" + i + "次发送信息");
+            sendMessage.sendMessage("channel1.1", "第" + i + "次发送信息");
         }
     }
 }

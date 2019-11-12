@@ -16,6 +16,6 @@
 
     <import resource="spring-mybatis-context.xml"/>
     <import resource="spring-jedis.xml"/>
-    <import resource="spring-kafka-server.xml"/>
-    <import resource="spring-kafka-customer.xml"/>
+    <!--<import resource="spring-kafka-server.xml"/>-->
+    <!--<import resource="spring-kafka-customer.xml"/>-->
 </beans>

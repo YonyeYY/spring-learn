@@ -14,6 +14,8 @@
         <module>dynamic-proxy</module>
         <module>mybatis</module>
         <module>arithmetic</module>
+        <module>lambda</module>
+        <module>web-app</module>
     </modules>
 
     <properties>
