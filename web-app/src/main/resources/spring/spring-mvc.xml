@@ -26,6 +26,13 @@
         </mvc:interceptor>
 
     </mvc:interceptors>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/role/*"/>
+            <bean class="web.app.interceptor.RuleInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 配置视图解析器 -->
     <bean id="internalResourceViewResolver"

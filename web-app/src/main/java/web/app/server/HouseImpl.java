@@ -9,4 +9,5 @@ import web.app.facde.IHouseService;
  * @deseription:
  **/
 public class HouseImpl implements IHouseService {
+
 }
