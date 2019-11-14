@@ -26,6 +26,5 @@ public class StreamTest {
             for (String item:list){
                 System.out.println(item);
             }
-
     }
 }
