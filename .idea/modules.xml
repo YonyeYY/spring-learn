@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/aop/aop.iml" filepath="$PROJECT_DIR$/aop/aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arithmetic/arithmetic.iml" filepath="$PROJECT_DIR$/arithmetic/arithmetic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bean-live/bean-live.iml" filepath="$PROJECT_DIR$/bean-live/bean-live.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-proxy/dynamic-proxy.iml" filepath="$PROJECT_DIR$/dynamic-proxy/dynamic-proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lambda/lambda.iml" filepath="$PROJECT_DIR$/lambda/lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-learn.iml" filepath="$PROJECT_DIR$/spring-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-app/web-app.iml" filepath="$PROJECT_DIR$/web-app/web-app.iml" />
+    </modules>
+  </component>
+</project>
