@@ -1,7 +1,7 @@
-package org.airyny.spring.learn.aop.biz;
+package org.airyny.spring.learn.aop.game.biz;
 
-import org.airyny.spring.learn.aop.facade.RoleService;
-import org.airyny.spring.learn.aop.model.Role;
+import org.airyny.spring.learn.aop.game.facade.RoleService;
+import org.airyny.spring.learn.aop.game.model.Role;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)

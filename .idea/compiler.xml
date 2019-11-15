@@ -15,5 +15,15 @@
         <module name="web-app" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aop" target="8" />
+      <module name="arithmetic" target="1.7" />
+      <module name="bean-live" target="1.7" />
+      <module name="dynamic-proxy" target="1.7" />
+      <module name="lambda" target="1.7" />
+      <module name="mybatis" target="1.7" />
+      <module name="spring-learn" target="1.7" />
+      <module name="web-app" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

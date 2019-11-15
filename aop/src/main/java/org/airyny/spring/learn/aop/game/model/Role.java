@@ -1,4 +1,4 @@
-package org.airyny.spring.learn.aop.model;
+package org.airyny.spring.learn.aop.game.model;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)

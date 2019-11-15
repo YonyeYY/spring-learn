@@ -1,11 +1,11 @@
 package org.airyny.apring.learn.aop;
 
-import org.airyny.spring.learn.aop.biz.RoleServiceImpl;
-import org.airyny.spring.learn.aop.facade.RoleService;
-import org.airyny.spring.learn.aop.interceptor.Interceptor;
-import org.airyny.spring.learn.aop.interceptor.RoleInterceptor;
-import org.airyny.spring.learn.aop.model.Role;
-import org.airyny.spring.learn.aop.util.ProxyBeanFactory;
+import org.airyny.spring.learn.aop.game.biz.RoleServiceImpl;
+import org.airyny.spring.learn.aop.game.facade.RoleService;
+import org.airyny.spring.learn.aop.game.interceptor.Interceptor;
+import org.airyny.spring.learn.aop.game.interceptor.RoleInterceptor;
+import org.airyny.spring.learn.aop.game.model.Role;
+import org.airyny.spring.learn.aop.game.util.ProxyBeanFactory;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)

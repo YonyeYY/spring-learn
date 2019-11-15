@@ -1,11 +1,11 @@
-package org.airyny.spring.learn.aop.util;
+package org.airyny.spring.learn.aop.game.util;
 
+
+import org.airyny.spring.learn.aop.game.interceptor.Interceptor;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-
-import org.airyny.spring.learn.aop.interceptor.Interceptor;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)

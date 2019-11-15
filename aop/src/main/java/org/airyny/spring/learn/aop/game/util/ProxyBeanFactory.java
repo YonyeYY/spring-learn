@@ -1,6 +1,6 @@
-package org.airyny.spring.learn.aop.util;
+package org.airyny.spring.learn.aop.game.util;
 
-import org.airyny.spring.learn.aop.interceptor.Interceptor;
+import org.airyny.spring.learn.aop.game.interceptor.Interceptor;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)

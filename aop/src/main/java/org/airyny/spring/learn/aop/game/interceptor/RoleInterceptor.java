@@ -1,4 +1,4 @@
-package org.airyny.spring.learn.aop.interceptor;
+package org.airyny.spring.learn.aop.game.interceptor;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)
