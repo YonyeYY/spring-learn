@@ -11,4 +11,6 @@
     <bean id="roleAspect" class="org.airyny.spring.learn.aop.aspect.RoleAspect"/>
 
     <bean id="roleService" class="org.airyny.spring.learn.aop.aspect.server.RoleServiceImpl"/>
+
+    <bean id="roleValidatorService" class="org.airyny.spring.learn.aop.aspect.server.RoleValidatorServiceImpl"/>
 </beans>

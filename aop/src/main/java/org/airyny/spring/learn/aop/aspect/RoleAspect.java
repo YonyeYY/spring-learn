@@ -1,6 +1,8 @@
 package org.airyny.spring.learn.aop.aspect;
 
+import org.airyny.spring.learn.aop.aspect.facade.RoleValidatorService;
 import org.airyny.spring.learn.aop.aspect.model.Role;
+import org.airyny.spring.learn.aop.aspect.server.RoleValidatorServiceImpl;
 import org.aspectj.lang.annotation.*;
 
 /**
@@ -35,6 +37,19 @@ within() 限制连接点匹配指定的包
  **/
 @Aspect
 public class RoleAspect {
+
+
+    /*
+    引入：
+        value ="org.airyny.spring.learn.aop.aspect.server.RoleServiceImpl*"
+        表示对RoleServiceImpl 类进行增强，也就是在RoleServiceImpl 中引入一个新的接口
+
+        defaultImpl = RoleValidatorServiceImpl.class
+        defaultImpl：代表器默认的实现类，这里是RoleValidatorServiceImpl
+     */
+    @DeclareParents(value ="org.airyny.spring.learn.aop.aspect.server.RoleServiceImpl+",
+            defaultImpl = RoleValidatorServiceImpl.class )
+    public RoleValidatorService roleValidatorService;
 
 
     //在被代理对象的方法前先调用

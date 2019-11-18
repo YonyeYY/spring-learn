@@ -22,7 +22,7 @@ public class StreamTest {
             players.add("wangmazi");
 
             List<String> list = players.stream()
-                    .filter(arReceiptsAllVo -> "lisi".equals(arReceiptsAllVo)).collect(Collectors.toList());
+                    .filter(arReceiptsAllVo -> "lisi".equals(arReceiptsAllVo)||"wangwu".equals(arReceiptsAllVo)).collect(Collectors.toList());
             for (String item:list){
                 System.out.println(item);
             }

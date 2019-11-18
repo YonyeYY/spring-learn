@@ -2,6 +2,7 @@ package org.airyny.apring.learn.aop;
 
 import org.airyny.spring.learn.aop.aspect.AopConfig;
 import org.airyny.spring.learn.aop.aspect.facade.RoleService;
+import org.airyny.spring.learn.aop.aspect.facade.RoleValidatorService;
 import org.airyny.spring.learn.aop.aspect.model.Role;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -20,12 +21,16 @@ public class AspectTest {
             ApplicationContext ctx = new AnnotationConfigApplicationContext(AopConfig.class);
             //使用XML 使用ClassPathXmlApplicationContext 作为IoC 容器
             //ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-config.xml");
+
+        RoleService roleService = ctx.getBean(RoleService.class);
+
+        RoleValidatorService roleValidatorService = (RoleValidatorService) roleService;
             Role role = new Role();
             role.setName("Jun");
             role.setNote("this not");
             role.setSex("555");
-            RoleService roleService = ctx.getBean(RoleService.class);
             roleService.printRole(role);
+            roleValidatorService.validate(role);
 
     }
 }
