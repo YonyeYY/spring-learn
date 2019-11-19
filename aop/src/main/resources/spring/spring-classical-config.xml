@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="proxyFactoryBeanAspect" class="org.airyny.spring.learn.aop.classical.ProxyFactoryBeanAspect"/>
+
+    <bean id="roleService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--这里代理的是接口-->
+        <property name="proxyInterfaces">
+            <value>org.airyny.spring.learn.aop.game.facade.RoleService</value>
+        </property>
+
+        <!--是ProsyFactoryBean 要代理的目标类-->
+        <property name="target">
+            <bean class="org.airyny.spring.learn.aop.game.biz.RoleServiceImpl"/>
+        </property>
+
+        <!--定义通知-->
+        <property name="interceptorNames">
+            <list>
+                <!--银日定义好的spring bean-->
+                <value>proxyFactoryBeanAspect</value>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

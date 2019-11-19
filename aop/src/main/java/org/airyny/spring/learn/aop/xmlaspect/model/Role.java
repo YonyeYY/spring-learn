@@ -1,32 +1,15 @@
-package org.airyny.spring.learn.aop.game.model;
+package org.airyny.spring.learn.aop.xmlaspect.model;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)
- * @Date:2019/9/27 18:07
+ * @Date:2019/11/18 16:09
  * @Version:1.0
  * @deseription:
  **/
 public class Role {
-
-    private Integer id;
     private String name;
+    private String sex;
     private String note;
-
-    public Role(){}
-
-    public Role(Integer id,String name,String note){
-        this.id = id;
-        this.name = name;
-        this.note = note;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -34,6 +17,14 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getNote() {
@@ -44,11 +35,12 @@ public class Role {
         this.note = note;
     }
 
+
     @Override
     public String toString() {
         return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
                 ", note='" + note + '\'' +
                 '}';
     }

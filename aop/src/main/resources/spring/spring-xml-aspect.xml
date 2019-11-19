@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="org.airyny.spring.learn.aop.xmlaspect"/>
+    <aop:aspectj-autoproxy />
+
+    <aop:config>
+        <!--定义切面类，这里是xmlAspect-->
+        <aop:aspect ref="xmlAspect">
+
+            <!--定义切点-->
+            <!--
+            <aop:pointcut id="printRole" expression="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+            -->
+
+
+            <!--定义前置通知-->
+            <aop:before method="before"
+                        pointcut="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+
+            <!--定义后置通知-->
+            <aop:after method="after"
+                        pointcut="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+
+            <!--定义异常通知-->
+            <aop:after-throwing method="afterThrowing"
+                        pointcut="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+
+            <!--定义返回通知-->
+            <aop:after-returning method="afterReturning"
+                        pointcut="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+
+            <!--定义环绕方法-->
+            <aop:around method="around"
+                        pointcut="execution(* org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl.printRole(..))"/>
+
+            <aop:declare-parents types-matching="org.airyny.spring.learn.aop.xmlaspect.server.RoleServiceImpl+"
+                                 implement-interface="org.airyny.spring.learn.aop.xmlaspect.verifier.RoleVerifier"
+                                 default-impl="org.airyny.spring.learn.aop.xmlaspect.verifier.impl.RoleVerifierImpl"/>
+        </aop:aspect>
+    </aop:config>
+
+
+
+</beans>
