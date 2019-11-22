@@ -5,7 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -46,4 +49,50 @@ public class SysUserinfoDao {
         });
         return list;
     }
+
+    /*
+     * @method: getUserByConnectionCallback
+     * @Author: xiang.yongye
+     * 使用ConnectionCallback 接口进行回调
+     * @param id 用户id
+     * @return org.airyny.spring.learn.jdbc.model.SysUserinfo 返回角色
+     */
+    public SysUserinfo getUserByConnectionCallback(Integer id){
+        SysUserinfo userinfo = null;
+        userinfo = jdbcTemplate.execute((Connection con)->{
+            SysUserinfo result = null;
+            String sql= "select id,user_name,user_email from sys_userinfo where id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                result = new SysUserinfo();
+                result.setId(rs.getInt("id"));
+                result.setUserName(rs.getString("user_name"));
+                result.setUserEmail(rs.getString("user_email"));
+            }
+            return result;
+        });
+        return userinfo;
+    }
+
+
+
+    public SysUserinfo getUserByStatementCallback(Integer id){
+        SysUserinfo userinfo = null;
+        userinfo = jdbcTemplate.execute((Statement stmt)->{
+            SysUserinfo result = null;
+            String sql = "select id,user_name,user_email from SysUserinfo where id="+id;
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                result = new SysUserinfo();
+                result.setId(rs.getInt("id"));
+                result.setUserName(rs.getString("user_name"));
+                result.setUserEmail(rs.getString("user_email"));
+            }
+            return  result;
+        });
+        return userinfo;
+    }
+
 }

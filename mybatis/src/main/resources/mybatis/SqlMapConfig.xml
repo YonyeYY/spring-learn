@@ -39,7 +39,7 @@
         <!--<mapper resource="mapper/UsersMapper.xml"/>-->
         <!--<mapper resource="mapper/LazyLoadRstMappper.xml"/>-->
 
-        <package name="com.yonye.mybatis.mapper"/>
+        <!--<package name="com.yonye.mybatis.mapper"/>-->
 
 
     <!--</mappers >-->

@@ -5,6 +5,8 @@ import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfo;
 import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class SysUserinfoBiz {
     @Autowired
     SysUserinfoMapper sysUserinfoMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public List<SysUserinfo> getList(){
 
         return sysUserinfoMapper.selectByExample(new SysUserinfoExample());

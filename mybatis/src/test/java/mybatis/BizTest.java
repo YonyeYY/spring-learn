@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BizTest {
     ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-context.xml");
 
+
     @Test
     public void bizTest(){
         SysUserinfoBiz sysUserinfoBiz = context.getBean("sysUserinfoBiz",SysUserinfoBiz.class);

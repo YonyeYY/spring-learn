@@ -12,17 +12,17 @@
     <!-- 数据库连接池 -->
     <bean id="dataSource"
           class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="maxIdle" value="5" />
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxIdle" value="5"/>
     </bean>
 
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping/目录下的所有SQL映射的xml文件-->
         <property name="mapperLocations">
             <array>
@@ -49,11 +49,35 @@
         </property>
     </bean>
 
-    <!-- 配置扫描器 -->
+    <!--
+    MapperFactoryBean 配置：
+    mapperInterface ----映射器的接口
+    如果同时配置了sqlSessionTemplate 和sqlSessionFactory，
+    那么它就会启用sqlSessionTemplate 而sqlSessionFactory 作废
+
+    -->
+
+    <!--<bean id="roleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="mapperInterface" value="org.airyny.spring.learn.mybatis.pub.dao.dev.SysAdmininfoMapper"/>-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+
+        <!--如果同时注入sqlSessionTemplate 和sqlSessionFactory，则只会启用sqlSessionTemplate-->
+            <!--<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>-->
+
+    <!--</bean>-->
+
+    <!--
+    MapperScannerCofigurer 配置扫描器
+    basePackage ---指定让Spring 自动扫描包，它会逐层深入扫描，如果遇到多个包可以使用半角逗号分隔。
+    annotationClass ---表示如果类被这个注解标识的时候，才进行扫描。对于开发而言，建议使用这个方式进行注册对应Mapper。
+                    在Spring 中往往使用注解@Repository 表示数据访问层（DAO，Data Access Object），
+    SqlSessionFactoryBeanName ---指定在Spring 中定义SqlSessionFactory 的Bean 名称。如果sqlSessionTemplateBeanName 被定义，那么它将失去作用
+    markerInterface ---指定实现了什么接口就认为它是Mapper。我们需要提供一个公共的接口去标记。
+     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描me.gacl.dao这个包以及它的子包下的所有映射接口类 -->
-        <property name="basePackage" value="org.airyny.spring.learn.mybatis.pub.dao.dev" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="org.airyny.spring.learn.mybatis.pub.dao.dev"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
 
@@ -62,7 +86,61 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- 配置事务拦截器 -->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="txManager"/>
+        <!-- 配置事务属性 -->
+        <property name="transactionAttributes">
+            <props>
+                <!-- key 代表的是业务方法的正则式匹配，而其内容可以配置各类事务定义参数-->
+                <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+                <prop key="save*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+                <prop key="add*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+                <prop key="select*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="del*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+                <prop key="remove*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- BeanName 属性告诉Spring 如何拦截类，由于声明了*ServiceImpl，所有关于Service 的
+    实现类都会呗其拦截，然后interceptorNames 则是定义事务拦截器，这样对应的类和方法就会被事务管理器所拦截，
+    然后interceptorNames 则是定义事务拦截器，这样对应的类和方法就会被事务管理器所拦截了-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*ServiceImpl</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
     <!--aop配置事务基于注解-->
     <tx:annotation-driven proxy-target-class="true" transaction-manager="txManager"/>
+
+    <!--
+    	SqlSessionTemplate 并不是一个必须配置的组件
+    	【它是线程安全的类，也就是确保每个线程使用的SqlSession 唯一且不互相冲突。
+    	其次，它提供了一系列的功能，比如增、删、查、改等常用功能，不过在此之前需要先配置它】
+    SqlSessionTemplate 要通过带有参数的构造方法去创建对象，
+    常用的参数是SqlSessionFactory 和MyBatis 执行器（Executor）类型，
+    取值范围是SIMPLE\REUSE\BATCH
+    	• SIMPLE---简易执行器，它没有什么特别的，不配置它就使用默认执行器。
+	    • REUSE---它是一种能够执行重用预处理语句的处理器。
+        • BATCH---执行器重用语句和批量更新，批量专用的执行器。
+    -->
+    <!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
+        <!--<constructor-arg ref="sqlSessionFactory"/>-->
+        <!--<constructor-arg value="BATCH"/>-->
+    <!--</bean>-->
+
+
 
 </beans>
