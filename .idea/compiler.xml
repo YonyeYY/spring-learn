@@ -12,6 +12,7 @@
         <module name="dynamic-proxy" />
         <module name="lambda" />
         <module name="mybatis" />
+        <module name="util" />
         <module name="web-app" />
       </profile>
     </annotationProcessing>
@@ -21,8 +22,9 @@
       <module name="bean-live" target="1.7" />
       <module name="dynamic-proxy" target="1.7" />
       <module name="lambda" target="1.7" />
-      <module name="mybatis" target="8" />
+      <module name="mybatis" target="1.7" />
       <module name="spring-learn" target="1.7" />
+      <module name="util" target="1.7" />
       <module name="web-app" target="1.7" />
     </bytecodeTargetLevel>
   </component>

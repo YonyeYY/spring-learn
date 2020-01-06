@@ -4,6 +4,7 @@ import org.airyny.spring.learn.mybatis.pub.biz.SysUserinfoBiz;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)
@@ -19,5 +20,10 @@ public class BizTest {
     public void bizTest(){
         SysUserinfoBiz sysUserinfoBiz = context.getBean("sysUserinfoBiz",SysUserinfoBiz.class);
         System.out.println(sysUserinfoBiz.getList().toString());
+    }
+
+    @Test
+    public void jobTest(){
+        CronTriggerFactoryBean
     }
 }

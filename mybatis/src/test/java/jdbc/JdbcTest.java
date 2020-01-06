@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -87,6 +88,13 @@ public class JdbcTest {
     public void testForSupportFindUsers(){
         List<SysUserinfo> list = userDaoSupport.findUsers("小丸子");
         System.out.println(list.toString());
+    }
+
+
+    @Test
+    public void tetss(){
+        BigDecimal a=new BigDecimal("232");
+        a.multiply(null);
     }
 
 
