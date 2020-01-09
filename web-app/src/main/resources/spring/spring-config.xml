@@ -15,7 +15,11 @@
        default-autowire="byName" default-lazy-init="false">
 
 
-
+    <!--表示使用注解驱动Spring mvc-->
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="web.app.config" />
+    <import resource="spring-controller.xml"/>
+    <!--<import resource="spring-mvc.xml"/>-->
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
         <!--<property name="maxUploadSize" value="104857600"/>-->
         <!--<property name="maxInMemorySize" value="4096"/>-->

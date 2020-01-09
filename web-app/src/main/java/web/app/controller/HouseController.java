@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @deseription:
  **/
 @RestController
+@RequestMapping("/house")
 public class HouseController {
     private static final Logger log = LogManager.getLogger(HouseController.class);
 

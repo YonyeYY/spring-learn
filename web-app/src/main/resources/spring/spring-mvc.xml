@@ -9,30 +9,38 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <mvc:annotation-driven/>
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:annotation-config />
+    <!--<context:annotation-config />-->
 
-    <context:component-scan base-package="web.app.controller" />
+    <!--<context:component-scan base-package="web.app.controller" />-->
 
-    <!--配置拦截器-->
-    <mvc:interceptors>
+    <!--&lt;!&ndash;配置拦截器&ndash;&gt;-->
+    <!--<mvc:interceptors>-->
 
-        <bean class="web.app.interceptor.MyInterceptor"/>
-        <mvc:interceptor>
-            <mvc:mapping path="/index.jsp"/>
-            <bean class="web.app.interceptor.MyInterceptor2"/>
-        </mvc:interceptor>
+        <!--<bean class="web.app.interceptor.MyInterceptor"/>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/index.jsp"/>-->
+            <!--<bean class="web.app.interceptor.MyInterceptor2"/>-->
+        <!--</mvc:interceptor>-->
 
-    </mvc:interceptors>
-    
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/role/*"/>
-            <bean class="web.app.interceptor.RuleInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--</mvc:interceptors>-->
+    <!---->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/role/*"/>-->
+            <!--<bean class="web.app.interceptor.RuleInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <!--<mvc:resources location="/WEB-INF/swagger/" mapping="/swagger/**"/>-->
+
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+
 
     <!-- 配置视图解析器 -->
     <bean id="internalResourceViewResolver"
@@ -44,10 +52,40 @@
         <!-- 后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>
-
+    <!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="templateLoaderPaths">-->
+            <!--<list>-->
+                <!--<value>/WEB-INF/view</value>-->
+                <!--<value>/WEB-INF/templates</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; <property name="templateLoaderPath" value="/WEB-INF/screen" /> &ndash;&gt;-->
+        <!--<property name="defaultEncoding" value="UTF-8" />-->
+        <!--<property name="freemarkerSettings">-->
+            <!--<props>-->
+                <!--<prop key="auto_import">spring.ftl as spring</prop>-->
+                <!--<prop key="template_update_delay">2</prop>&lt;!&ndash; 模板更新检查时间(秒) &ndash;&gt;-->
+                <!--<prop key="number_format">#</prop>-->
+                <!--<prop key="date_format">yyyy-MM-dd</prop>-->
+                <!--<prop key="time_format">HH:mm:ss</prop>-->
+                <!--<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>-->
+                <!--&lt;!&ndash;  <prop key="classic_compatible">true</prop> &ndash;&gt;-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
     <!--如果有配置数据库事务，需要开启注解事务的，需要开启这段代码-->
     <!--
     <tx:annotation-driven transaction-manager="transactionManager"/>
     -->
 
+
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <value>
+                json=application/json
+                xml=application/xml
+            </value>
+        </property>
+    </bean>
 </beans>
