@@ -1,10 +1,10 @@
 package mybatis;
 
-import org.airyny.spring.learn.mybatis.pub.biz.SysUserinfoBiz;
+import org.airyny.spring.learn.mybatis.pub.biz.UserTransactionTest;
+import org.airyny.spring.learn.mybatis.pub.faced.UserTransactionTestServicve;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 
 /**
  * @Author: yongye(xiang.yongye @ hand - china.com)
@@ -18,12 +18,8 @@ public class BizTest {
 
     @Test
     public void bizTest(){
-        SysUserinfoBiz sysUserinfoBiz = context.getBean("sysUserinfoBiz",SysUserinfoBiz.class);
-        System.out.println(sysUserinfoBiz.getList().toString());
+        UserTransactionTestServicve sysUserinfoBiz = context.getBean("userTransactionTestServicve", UserTransactionTest.class);
+        System.out.println(sysUserinfoBiz.getList());
     }
 
-    @Test
-    public void jobTest(){
-        CronTriggerFactoryBean
-    }
 }

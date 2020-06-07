@@ -32,6 +32,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.10" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-ui:2.7.0" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.8" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:5.6.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.8.RELEASE" />

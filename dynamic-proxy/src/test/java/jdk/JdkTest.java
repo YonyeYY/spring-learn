@@ -22,4 +22,9 @@ public class JdkTest {
         proxy.sayHello2();
         proxy.sayHello();
     }
+    @Test
+    public void test0(){
+        System.out.println((String)null);
+
+    }
 }

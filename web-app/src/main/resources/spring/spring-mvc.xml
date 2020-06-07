@@ -42,7 +42,7 @@
 
 
 
-    <!-- 配置视图解析器 -->
+    <!-- 配置JSP 视图解析器 -->
     <bean id="internalResourceViewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 

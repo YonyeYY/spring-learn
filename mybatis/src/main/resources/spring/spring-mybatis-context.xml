@@ -51,7 +51,7 @@
 
     <!--
     MapperFactoryBean 配置：
-    mapperInterface ----映射器的接口
+    mapperInterface 映射器的接口
     如果同时配置了sqlSessionTemplate 和sqlSessionFactory，
     那么它就会启用sqlSessionTemplate 而sqlSessionFactory 作废
 
@@ -68,11 +68,11 @@
 
     <!--
     MapperScannerCofigurer 配置扫描器
-    basePackage ---指定让Spring 自动扫描包，它会逐层深入扫描，如果遇到多个包可以使用半角逗号分隔。
-    annotationClass ---表示如果类被这个注解标识的时候，才进行扫描。对于开发而言，建议使用这个方式进行注册对应Mapper。
+    basePackage 指定让Spring 自动扫描包，它会逐层深入扫描，如果遇到多个包可以使用半角逗号分隔。
+    annotationClass 表示如果类被这个注解标识的时候，才进行扫描。对于开发而言，建议使用这个方式进行注册对应Mapper。
                     在Spring 中往往使用注解@Repository 表示数据访问层（DAO，Data Access Object），
-    SqlSessionFactoryBeanName ---指定在Spring 中定义SqlSessionFactory 的Bean 名称。如果sqlSessionTemplateBeanName 被定义，那么它将失去作用
-    markerInterface ---指定实现了什么接口就认为它是Mapper。我们需要提供一个公共的接口去标记。
+    SqlSessionFactoryBeanName 指定在Spring 中定义SqlSessionFactory 的Bean 名称。如果sqlSessionTemplateBeanName 被定义，那么它将失去作用
+    markerInterface 指定实现了什么接口就认为它是Mapper。我们需要提供一个公共的接口去标记。
      -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描me.gacl.dao这个包以及它的子包下的所有映射接口类 -->
@@ -132,9 +132,9 @@
     SqlSessionTemplate 要通过带有参数的构造方法去创建对象，
     常用的参数是SqlSessionFactory 和MyBatis 执行器（Executor）类型，
     取值范围是SIMPLE\REUSE\BATCH
-    	• SIMPLE---简易执行器，它没有什么特别的，不配置它就使用默认执行器。
-	    • REUSE---它是一种能够执行重用预处理语句的处理器。
-        • BATCH---执行器重用语句和批量更新，批量专用的执行器。
+    	• SIMPLE 简易执行器，它没有什么特别的，不配置它就使用默认执行器。
+	    • REUSE 它是一种能够执行重用预处理语句的处理器。
+        • BATCH 执行器重用语句和批量更新，批量专用的执行器。
     -->
     <!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
         <!--<constructor-arg ref="sqlSessionFactory"/>-->

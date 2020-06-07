@@ -1,6 +1,7 @@
 package org.airyny.spring.learn.mybatis.pub.biz;
 
 import org.airyny.spring.learn.mybatis.pub.dao.dev.SysUserinfoMapper;
+import org.airyny.spring.learn.mybatis.pub.faced.SysUserinfoService;
 import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfo;
 import org.airyny.spring.learn.mybatis.pub.model.dev.SysUserinfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,41 @@ import java.util.List;
  * @Version:1.0
  * @deseription:
  **/
-@Service("sysUserinfoBiz")
-public class SysUserinfoBiz {
+@Service("sysUserinfoService")
+public class SysUserinfoBiz implements SysUserinfoService {
 
     @Autowired
     SysUserinfoMapper sysUserinfoMapper;
 
+    @Override
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public List<SysUserinfo> getList(){
 
         return sysUserinfoMapper.selectByExample(new SysUserinfoExample());
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    public int insertRequired1(SysUserinfo sysUserinfo){
+        return sysUserinfoMapper.insert(sysUserinfo);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    public int insertRequired2(SysUserinfo sysUserinfo){
+        return sysUserinfoMapper.insert(sysUserinfo);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
+    public int insertSuppores1(SysUserinfo sysUserinfo){
+        return sysUserinfoMapper.insert(sysUserinfo);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
+    public int insertSuppores2(SysUserinfo sysUserinfo){
+        return sysUserinfoMapper.insert(sysUserinfo);
+    }
+
 }
