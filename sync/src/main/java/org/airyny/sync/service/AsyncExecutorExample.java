@@ -2,6 +2,9 @@ package org.airyny.sync.service;
 
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class AsyncExecutorExample {
 
@@ -12,6 +15,16 @@ public class AsyncExecutorExample {
             taskExecutor.execute(new MessagePrinterTask("Message: "+i));
         }
     }
+
+    /**
+     * 关闭线程池
+     */
+    public void shutdown(){
+        if (taskExecutor instanceof ThreadPoolTaskExecutor){
+            ((ThreadPoolTaskExecutor) taskExecutor).shutdown();
+        }
+    }
+
 
     @Async
     public void printMessage2(){
@@ -36,7 +49,7 @@ public class AsyncExecutorExample {
         @Override
         public void run() {
             try{
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 System.out.println(Thread.currentThread().getName()+ " " + message);
             }catch (Exception e){
                 e.printStackTrace();
